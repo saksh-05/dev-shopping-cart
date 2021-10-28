@@ -5,7 +5,7 @@ import { increase, decrease } from "@redux/actions";
 import { RootState } from "@redux/reducers";
 import { useAppDispatch } from "@redux/store";
 
-export default function Counter() {
+export const Counter= ()=> {
   const dispatch = useAppDispatch();
   const count = useSelector((state: RootState) => state.counter.count);
 
