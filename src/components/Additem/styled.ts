@@ -11,6 +11,7 @@ export const Txt = styled.div`
   color: white;
   width: 10rem;
   margin-bottom: 1rem;
+  cursor:pointer;
 `;
 
 export const Btn = styled.div`

@@ -5,4 +5,4 @@ export { Cards } from "./cards";
 export { Footer } from "./footer";
 export { Wrapper } from "./wrapper";
 export { Shoppinglist } from "./Shoppinglist";
-export { Additem } from "./Additem";
+export { Additem } from "./additem";

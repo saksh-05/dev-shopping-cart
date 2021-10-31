@@ -10,7 +10,7 @@ const Menu: React.FC = () => {
           style={{
             alignItems: "center",
             display: "inline-flex",
-            height: "fit-content;",
+            height: "fit-content",
           }}
         >
           <p style={{ fontSize: "26px", width: "30rem", fontWeight: 700 }}>
