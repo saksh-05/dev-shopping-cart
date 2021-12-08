@@ -5,4 +5,7 @@ export { Cards } from "./cards";
 export { Footer } from "./footer";
 export { Wrapper } from "./wrapper";
 export { Shoppinglist } from "./Shoppinglist";
-export { Additem } from "./additem";
+export { ListForm } from "./form";
+export { ShowShoppingList } from "./showShoppingList";
+export { HistoryList } from "./historylist";
+export { AnalyticList } from "./analyticList";

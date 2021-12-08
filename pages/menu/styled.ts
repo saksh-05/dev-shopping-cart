@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 70%;
-  display: inline-flex;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
 `;
 
 export const Wrapper = styled.div`
+  width: 100%;
   display: inline-flex;
-  width: 90%;
-  margin-left: auto;
 `;
 export const Search = styled.div``;
 
@@ -41,4 +41,8 @@ export const Txt = styled.p`
   margin-right: 0.5rem;
   font-size: 1.5rem;
   font-weight: 700;
+`;
+
+export const AllItems = styled.div`
+  height: 10rem;
 `;

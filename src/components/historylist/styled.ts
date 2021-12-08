@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const WrapperA = styled.div`
+  width: 30%;
+  background: #fff0de;
+  padding: 2rem;
+  padding-bottom: 8rem;
+`;
+
 export const Wrapper = styled.div`
   background: #80485b;
   display: inline-flex;
@@ -11,7 +18,7 @@ export const Txt = styled.div`
   color: white;
   width: 10rem;
   margin-bottom: 1rem;
-  cursor:pointer;
+  cursor: pointer;
 `;
 
 export const Btn = styled.div`

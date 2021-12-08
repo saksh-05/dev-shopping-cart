@@ -4,12 +4,20 @@ interface ICounter {
   activea: boolean;
   activeb: boolean;
   activec: boolean;
+  itemView: {
+    showId: string;
+    showShoppingItem: boolean;
+  };
 }
 
 const initialState: ICounter = {
   activea: true,
   activeb: false,
   activec: false,
+  itemView: {
+    showId: "",
+    showShoppingItem: false,
+  },
 };
 
 const toggleSlice = createSlice({
@@ -31,9 +39,19 @@ const toggleSlice = createSlice({
       state.activeb = false;
       state.activec = true;
     },
+    viewItem: (state, action) => {
+      return {
+        ...state,
+        itemView: {
+          showId: action.payload.itemId,
+          showShoppingItem: !state.itemView.showShoppingItem,
+        },
+      };
+    },
+    
   },
 });
 
-export const { activea, activeb, activec } = toggleSlice.actions;
+export const { activea, activeb, activec, viewItem } = toggleSlice.actions;
 
 export default toggleSlice.reducer;

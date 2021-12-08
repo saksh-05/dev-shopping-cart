@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Router from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "@definitions/styled-components";
@@ -57,13 +58,20 @@ export const Header: React.FC = () => {
         <HeaderIcon>
           <div
             className={activeaVal ? "active" : "null"}
-            onClick={() => dispatch(activea())}
+            onClick={() => {
+              dispatch(activea());
+              Router.push("menu");
+            }}
           >
             <Image src="/icons/list.svg" alt="list" width="96" height="26" />
           </div>
           <div
             className={activebVal ? "active" : "null"}
-            onClick={() => dispatch(activeb())}
+            onClick={() => {
+              dispatch(activeb());
+              Router.push("history");
+              // history.push("/history");
+            }}
           >
             <Image
               src="/icons/replay.svg"
@@ -74,7 +82,10 @@ export const Header: React.FC = () => {
           </div>
           <div
             className={activecVal ? "active" : "null"}
-            onClick={() => dispatch(activec())}
+            onClick={() => {
+              dispatch(activec());
+              Router.push("analytics");
+            }}
           >
             <Image
               src="/icons/analytic.svg"

@@ -6,7 +6,9 @@ export const Wrapper = styled.div`
   background-color: ${({ theme }: any) => theme.colors.headerBg};
   height: 100vh;
   width: fit-content;
-  position: fixed;
+  position: sticky;
+  left: 0;
+  top: 0;
 `;
 
 export const Container = styled.div`
