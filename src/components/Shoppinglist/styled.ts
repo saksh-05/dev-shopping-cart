@@ -20,8 +20,7 @@ export const Search = styled.div`
 `;
 
 export const InputWrapper = styled.div`
-  left: 1rem;
-  position: relative;
+  width: 83%;
   input:focus {
     outline: none !important;
     border: 2px solid #f9a109;
@@ -132,4 +131,28 @@ export const ListName = styled.div`
   font-weight: 700;
   width: 18.2rem;
   padding: 2rem;
+`;
+
+export const DisplayList = styled.div`
+  background: white;
+  position: fixed;
+  top: 0;
+  bottom: 130px;
+  box-shadow: 0px 0px 3px 0px black;
+  width: 23%;
+  padding: 2rem 0;
+  overflow-y: auto;
+`;
+
+export const Item = styled.div`
+  cursor: pointer;
+  height: 2rem;
+  align-items: center;
+  display: grid;
+  padding-left: 2rem;
+  font-weight: 500;
+
+  &:hover {
+    background: #f9a109;
+  }
 `;

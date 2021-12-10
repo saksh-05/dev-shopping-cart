@@ -10,19 +10,12 @@ import {
 import { Header, ShowShoppingList, Shoppinglist } from "@components";
 import GlobalStyle from "@styles/globalStyles";
 import Image from "next/image";
-
 import { useSelector } from "react-redux";
-
-import { viewItem } from "@redux/actions";
 import { RootState } from "@redux/reducers";
-import { useAppDispatch } from "@redux/store";
 import axios from "axios";
-import { type } from "os";
 
 const History: React.FC = () => {
   const itemView = useSelector((state: RootState) => state.toggle.itemView);
-  const data = new Date();
-  console.log(data.toDateString());
   const [resValue, setResValue] = useState([]);
   const [showDetailHistory, setShowDetailHistory] = useState(true);
   const [detailHistory, setDetailHistory] = useState([]);
@@ -33,9 +26,7 @@ const History: React.FC = () => {
       await axios
         .get("/api/addList")
         .then((res) => {
-          console.log(res);
           setResValue(res.data.data);
-          console.log(resValue);
         })
         .catch((err) => console.log(err));
     };
@@ -43,7 +34,6 @@ const History: React.FC = () => {
       await axios
         .get("/api/menuList")
         .then((res) => {
-          console.log(res.data.data.menu);
           setAllItem(res.data.data.menu);
         })
         .catch((err) => console.log(err));
@@ -65,8 +55,9 @@ const History: React.FC = () => {
                 {resValue.map((val) => {
                   const timeSt: String = val["timestamps"];
                   return (
-                    <>
+                    <div key={val["_id"] + "h"}>
                       <div
+                        key={val["_id"]}
                         style={{
                           marginTop: "2rem",
                           marginBottom: "0.5rem",
@@ -77,6 +68,7 @@ const History: React.FC = () => {
                         {timeSt.split(" ")[1]} {timeSt.split(" ")[3]}
                       </div>
                       <HistoryTitle
+                        key={val["_id"] + "a"}
                         onClick={() => {
                           setShowDetailHistory(false);
                           setDetailHistory(val);
@@ -84,18 +76,21 @@ const History: React.FC = () => {
                       >
                         {val["title"]}
                         <div
+                          key={val["_id"] + "b"}
                           style={{ display: "inline-flex", color: "#C1C1C4" }}
                         >
                           <Image
+                            key={val["_id"] + "d"}
                             src="/icons/calendar.svg"
                             alt="calendar"
                             height="24"
                             width="24"
                           />
                           {val["timestamps"]}
-                          <Progress>
-                            {val['progress'] === 'true' ? (
+                          <Progress key={val["_id"] + "c"}>
+                            {val["progress"] === "true" ? (
                               <div
+                                key={val["_id"] + "e"}
                                 style={{
                                   border: "2px solid #56CCF2",
                                   borderRadius: " 0.5rem",
@@ -108,6 +103,7 @@ const History: React.FC = () => {
                               </div>
                             ) : (
                               <div
+                                key={val["_id"] + "g"}
                                 style={{
                                   border: "2px solid #EB5757",
                                   borderRadius: " 0.5rem",
@@ -121,6 +117,7 @@ const History: React.FC = () => {
                             )}
                           </Progress>
                           <Image
+                            key={val["_id"] + "f"}
                             src="/icons/arrow.svg"
                             alt="arrow"
                             width="24"
@@ -128,7 +125,7 @@ const History: React.FC = () => {
                           />
                         </div>
                       </HistoryTitle>
-                    </>
+                    </div>
                   );
                 })}
               </HistoryValue>
@@ -156,11 +153,6 @@ const History: React.FC = () => {
                 />
                 back
               </div>
-              {console.log(detailHistory)}
-              {console.log(allItem)}
-
-              {console.log(Object.keys(detailHistory["categoryId"][0]))}
-              {/* const categoryArray=detailHistory["categoryId"][0]; */}
               <h2>{detailHistory["title"]}</h2>
               <div
                 style={{
@@ -180,22 +172,25 @@ const History: React.FC = () => {
                 {detailHistory["timestamps"]}
               </div>
               {Object.keys(detailHistory["categoryId"][0]).map((dt) => {
-                console.log(dt);
                 return (
-                  <>
-                    <h3 style={{ marginBottom: "0.3rem", marginTop: "4rem" }}>
+                  <div key={dt + "a"}>
+                    <h3
+                      key={dt}
+                      style={{ marginBottom: "0.3rem", marginTop: "4rem" }}
+                    >
                       {dt}
                     </h3>
                     {Object.keys(detailHistory["itemId"][0]).map((Id) => {
-                      console.log(Id);
-                      console.log(detailHistory["itemId"][0][Id]);
                       return allItem.map((itm) => {
                         return itm["category"] === dt && itm["_id"] === Id ? (
-                          <>
-                            {console.log(itm)}
+                          <div
+                            key={itm["_id"] + "a"}
+                            style={{ display: "inline" }}
+                          >
                             <div
+                              key={itm["_id"]}
                               style={{
-                                boxShadow: "black 0px 4px 10px -3px",
+                                boxShadow: "black 1px 1px 8px -5px",
                                 minHeight: "4rem",
                                 borderRadius: "0.5rem",
                                 textAlign: "center",
@@ -210,6 +205,7 @@ const History: React.FC = () => {
                             >
                               {itm["name"]}
                               <div
+                                key={itm["_id"] + "b"}
                                 style={{
                                   marginLeft: "2rem",
                                   fontSize: "12px",
@@ -220,24 +216,19 @@ const History: React.FC = () => {
                                 {detailHistory["itemId"][0][Id]}pcs{" "}
                               </div>
                             </div>
-                          </>
+                          </div>
                         ) : (
-                          <></>
+                          ""
                         );
                       });
                     })}
-                  </>
+                  </div>
                 );
-                // console.log(dt);
               })}
             </DetailHistory>
           )}
         </Container>
-        {itemView.showShoppingItem ? (
-          <ShowShoppingList showId={itemView.showId} />
-        ) : (
-          <Shoppinglist />
-        )}
+        {itemView.showShoppingItem ? <ShowShoppingList /> : <Shoppinglist />}
       </Wrapper>
     </>
   );

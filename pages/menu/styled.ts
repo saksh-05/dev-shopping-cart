@@ -46,3 +46,5 @@ export const Txt = styled.p`
 export const AllItems = styled.div`
   height: 10rem;
 `;
+
+export const DisplayItem = styled.div``;

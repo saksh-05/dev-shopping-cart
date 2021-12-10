@@ -21,9 +21,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const menu = await MenuList.find({})
           .sort({ category: "1" })
           .sort({ name: "1" });
-        const category = await CategoryList.find({}).sort({ category: 1 });
-        console.log(menu);
-        console.log(category);
+        const category = await CategoryList.find({}).sort({ category: "1" });
         res
           .status(200)
           .json({ success: true, data: { menu: menu, category: category } });
@@ -34,10 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     case "PUT":
       try {
         /* create a new model in the database */
-        // const menu = await MenuList.create(req.body.values);
-        // res.status(201).json({ success: true, data: menu });
         const { name, note, image, category } = req.body.values;
-        console.log(req.body.values.name);
         MenuList.findOne(
           {
             name,
@@ -87,10 +82,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                   }
                 }
               );
-              // const menu = await MenuList.create(req.body.values);
-              // res.status(201).json({ success: true, data: menu });
             } else if (menu) {
-              console.log("item update");
               MenuList.findOneAndUpdate(
                 { _id: menu.id },
                 {
@@ -103,7 +95,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 }
               )
                 .then(() => {
-                  console.log("List updated");
                   res.status(201).json({ success: true, data: "data updated" });
                 })
                 .catch((err: Error) => console.log(err));
@@ -135,7 +126,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           }
         );
       } catch (error) {
-        console.log("error");
         res.status(400).json({ success: false });
       }
       break;

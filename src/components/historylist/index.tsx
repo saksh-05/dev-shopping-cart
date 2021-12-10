@@ -1,13 +1,6 @@
 import React from "react";
 import { WrapperA, Wrapper, Txt, Btn } from "./styled";
-import { useSelector } from "react-redux";
-import {
-  itemIncrease,
-  addItem,
-  itemDecrease,
-  itemDelete,
-} from "@redux/actions";
-import { RootState } from "@redux/reducers";
+import { addItem } from "@redux/actions";
 import { useAppDispatch } from "@redux/store";
 
 export const HistoryList: React.FC = () => {

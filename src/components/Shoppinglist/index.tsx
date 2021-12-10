@@ -8,20 +8,18 @@ import {
   Txt,
   Btn,
   ShoppingListItem,
-  ItemCounter,
   Minus,
   Plus,
   ItemVal,
   DeleteIcon,
   Counter,
   ListName,
+  DisplayList,
+  Item,
 } from "./styled";
 import Image from "next/image";
-
 import axios from "axios";
-
 import { useSelector } from "react-redux";
-
 import {
   itemIncrease,
   addItem,
@@ -31,19 +29,16 @@ import {
 } from "@redux/actions";
 import { RootState } from "@redux/reducers";
 import { useAppDispatch } from "@redux/store";
-import store from "@redux/store";
-import Category from "models/Category";
-import menuList from "pages/api/menuList";
-import { object } from "yup/lib/locale";
 
 export const Shoppinglist: React.FC = () => {
   const dispatch = useAppDispatch();
-  const shopVal = useSelector((state: RootState) => state.shoppinglist.shop);
-  // const [addItem, setAddItem] = useState(false);
   const [val, setVal] = useState({
     category: new Map(),
     allItems: [],
   });
+  const [itemName, setItemName] = useState("");
+  const [itemDetail, setItemDetail] = useState(new Array());
+  const [dropDown, setDropDown] = useState(false);
   const increaseVal = useSelector((state: RootState) => state.itemCounter);
   const itemArray = useSelector(
     (state: RootState) => state.itemCounter.itemArray
@@ -53,7 +48,6 @@ export const Shoppinglist: React.FC = () => {
   );
   const show = useSelector((state: RootState) => state.shoppinglist.show);
   const categoryKeys = Object.keys(itmCtgry);
-  console.log(itmCtgry);
   const [listChange, setListChange] = useState(false);
   const [listName, setListName] = useState("");
 
@@ -64,7 +58,6 @@ export const Shoppinglist: React.FC = () => {
       await axios
         .get("/api/menuList")
         .then((res) => {
-          console.log(res.data.data.menu);
           setVal({
             ...val,
             allItems: res.data.data.menu,
@@ -72,8 +65,6 @@ export const Shoppinglist: React.FC = () => {
         })
         .catch((err) => console.log(err));
     };
-
-    console.log("shoppingList");
 
     getMenuList();
   }, [setVal]);
@@ -98,14 +89,6 @@ export const Shoppinglist: React.FC = () => {
             }}
           ></div>
           <ListName style={{ display: listChange ? "block" : "none" }}>
-            <p
-              style={{ cursor: "pointer", margin: "0", textAlign: "right" }}
-              onClick={() => {
-                setListChange(false);
-              }}
-            >
-              X
-            </p>
             <label style={{ display: "block", marginBottom: "0.5rem" }}>
               Change List Name
             </label>
@@ -117,87 +100,6 @@ export const Shoppinglist: React.FC = () => {
                 height: "2rem",
               }}
               onChange={(e) => {
-                console.log(e.target.value);
-                setListName(e.target.value);
-              }}
-            />
-            <div
-              style={{
-                marginTop: "1rem",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <button
-                style={{
-                  border: "none",
-                  height: "3rem",
-                  width: "5rem",
-                  borderRadius: "0.5rem",
-                  fontWeight: 500,
-                  fontSize: "1rem",
-                  marginRight: "2rem",
-                  cursor: "pointer",
-                }}
-                onClick={() => setListChange(false)}
-              >
-                cancel
-              </button>
-              <button
-                style={{
-                  border: "none",
-                  background: "#EB5757",
-                  color: "white",
-                  height: "3rem",
-                  width: "5rem",
-                  borderRadius: "0.5rem",
-                  fontWeight: 500,
-                  fontSize: "1rem",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  dispatch(changeTitle(listName));
-                  setListChange(false);
-                }}
-              >
-                Yes
-              </button>
-            </div>{" "}
-          </ListName>
-          <div
-            style={{
-              display: listChange ? "block" : "none",
-              width: "22rem",
-              height: "100%",
-              position: "fixed",
-              right: "0",
-              top: "0",
-              zIndex: 1,
-              background: "black",
-              opacity: "30%",
-            }}
-          ></div>
-          <ListName style={{ display: listChange ? "block" : "none" }}>
-            <p
-              style={{ cursor: "pointer", margin: "0" }}
-              onClick={() => {
-                setListChange(false);
-              }}
-            >
-              X
-            </p>
-            <label style={{ display: "block", marginBottom: "0.5rem" }}>
-              Change List Name
-            </label>
-            <input
-              style={{
-                width: "100%",
-                borderRadius: "0.5rem",
-                border: "1px solid black",
-                height: "2rem",
-              }}
-              onChange={(e) => {
-                console.log(e.target.value);
                 setListName(e.target.value);
               }}
             />
@@ -295,13 +197,13 @@ export const Shoppinglist: React.FC = () => {
               No item
             </div>
           )}
-          {/* Object.keys(itemArray).length &&  */}
           <ShoppingListItem>
             {Object.keys(itemArray).length !== 0 ? (
               categoryKeys.map((ctgry) => {
                 return (
-                  <div>
+                  <div key={ctgry + "A"}>
                     <h4
+                      key={ctgry}
                       style={{
                         marginBottom: "0.5rem",
                         fontWeight: 700,
@@ -312,6 +214,7 @@ export const Shoppinglist: React.FC = () => {
                       {ctgry}
                     </h4>
                     <div
+                      key={ctgry + "B"}
                       style={{
                         display: "inline-flex",
                         flexWrap: "wrap",
@@ -319,14 +222,14 @@ export const Shoppinglist: React.FC = () => {
                       }}
                     >
                       {val.allItems.map((item: typeof val.allItems) => {
-                        const itemId: string = item._id;
+                        const itemId: string = item["_id"];
                         const count: number = itemArray[itemId];
-                        const itemCategory: string = item.category;
+                        const itemCategory: string = item["category"];
                         const ctgryCategory: string = ctgry;
-                        console.log(count);
                         return itemCategory === ctgryCategory &&
                           count !== undefined ? (
                           <h3
+                            key={itemId}
                             style={{
                               display: "inline-flex",
                               justifyContent: "space-between",
@@ -335,10 +238,10 @@ export const Shoppinglist: React.FC = () => {
                             }}
                           >
                             {item.name}
-                            {/* <ItemCounter>{count} pcs</ItemCounter> */}
 
-                            <ItemVal>
+                            <ItemVal key={itemId + "a"}>
                               <DeleteIcon
+                                key={itemId + "b"}
                                 onClick={() =>
                                   dispatch(
                                     itemDelete({
@@ -349,6 +252,7 @@ export const Shoppinglist: React.FC = () => {
                                 }
                               >
                                 <Image
+                                  key={itemId + "c"}
                                   src="/icons/delete.svg"
                                   alt="delete"
                                   width="20"
@@ -356,6 +260,7 @@ export const Shoppinglist: React.FC = () => {
                                 />
                               </DeleteIcon>
                               <Minus
+                                key={itemId + "d"}
                                 onClick={() =>
                                   dispatch(
                                     itemDecrease({
@@ -368,8 +273,9 @@ export const Shoppinglist: React.FC = () => {
                               >
                                 -
                               </Minus>
-                              <Counter>{count} pcs</Counter>
+                              <Counter key={itemId + "e"}>{count} pcs</Counter>
                               <Plus
+                                key={itemId + "f"}
                                 onClick={() =>
                                   dispatch(
                                     itemIncrease({
@@ -387,7 +293,7 @@ export const Shoppinglist: React.FC = () => {
                             </ItemVal>
                           </h3>
                         ) : (
-                          <></>
+                          ""
                         );
                       })}
                     </div>
@@ -405,19 +311,53 @@ export const Shoppinglist: React.FC = () => {
               </>
             )}
           </ShoppingListItem>
+          {dropDown && (
+            <DisplayList>
+              {itemName === "" ? (
+                setDropDown(false)
+              ) : (
+                <div>
+                  {val.allItems.map((itm) => {
+                    const name: string = itm["name"];
+                    return name
+                      .toLowerCase()
+                      .includes(itemName.toLowerCase()) ? (
+                      <Item
+                        key={itm["_id"]}
+                        onClick={() => {
+                          setItemName(name);
+                          setItemDetail(itm);
+                        }}
+                      >
+                        {name}
+                      </Item>
+                    ) : (
+                      ""
+                    );
+                  })}
+                </div>
+              )}
+            </DisplayList>
+          )}
           <Search>
             <InputWrapper>
               <input
                 type="text"
+                value={itemName}
                 placeholder="Enter a name"
                 style={{
                   height: "3.5rem",
-                  width: "14rem",
+                  width: "13.4rem",
                   border: "3px solid #F9A109",
-                  borderRadius: "0.8rem",
+                  borderRadius: "0.8rem 0 0 0.8rem",
                   fontFamily: "Quicksand",
                   fontWeight: 700,
                 }}
+                onChange={(e: SyntheticEvent) => {
+                  const val = e.target as HTMLInputElement;
+                  setItemName(val.value);
+                }}
+                onInput={() => setDropDown(true)}
               />
               <input
                 type="submit"
@@ -425,15 +365,25 @@ export const Shoppinglist: React.FC = () => {
                 style={{
                   background: "#F9A109",
                   border: "none",
-                  borderRadius: "0.8rem",
+                  borderRadius: "0 0.8rem 0.8rem 0",
                   height: "3.5rem",
-                  position: "relative",
-                  right: "2rem",
                   width: "5rem",
                   fontFamily: "Quicksand",
                   color: "white",
                   fontWeight: 700,
                   cursor: "pointer",
+                }}
+                onClick={() => {
+                  setItemName("");
+                  setDropDown(false);
+                  dispatch(
+                    itemIncrease({
+                      item: itemDetail,
+                      count: 0 | increaseVal.itemArray[itemDetail["_id"]],
+                      ctgCount:
+                        0 | increaseVal.itemCategory[itemDetail["category"]],
+                    })
+                  );
                 }}
               />
             </InputWrapper>

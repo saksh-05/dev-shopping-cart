@@ -33,9 +33,6 @@ class CustomDocument extends Document {
     } finally {
       sheet.seal();
     }
-    const initialProps = await Document.getInitialProps(ctx);
-
-    return initialProps;
   }
   render() {
     return (

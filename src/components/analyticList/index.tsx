@@ -13,19 +13,10 @@ import {
   ListName,
 } from "./styled";
 import Image from "next/image";
-
 import { useSelector } from "react-redux";
-
-import {
-  itemIncrease,
-  addItem,
-  itemDecrease,
-  itemDelete,
-  changeTitle,
-} from "@redux/actions";
+import { addItem, changeTitle } from "@redux/actions";
 import { RootState } from "@redux/reducers";
 import { useAppDispatch } from "@redux/store";
-import store from "@redux/store";
 
 export const AnalyticList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -37,30 +28,18 @@ export const AnalyticList: React.FC = () => {
     allItems: [],
   });
   const title = useSelector((state: RootState) => state.shoppinglist.title);
-  console.log(title);
-  console.log("Initial state: ", store.getState());
-  // {todos: [....], filters: {status, colors}}
-
-  // Every time the state changes, log it
-  // Note that subscribe() returns a function for unregistering the listener
-  const unsubscribe = store.subscribe(() =>
-    console.log("State after dispatch: ", store.getState())
-  );
   const itemArray = useSelector(
     (state: RootState) => state.itemCounter.itemArray
   );
   const itmCtgry = useSelector(
     (state: RootState) => state.itemCounter.itemCategory
   );
-  console.log(itmCtgry);
   const categoryKeys = Object.keys(itmCtgry);
-  const itemKeys = Object.keys(itemArray);
   useEffect(() => {
     const getMenuList = async () => {
       await axios
         .get("/api/menuList")
         .then((res) => {
-          console.log(res.data.data.menu);
           setVal({
             ...val,
             allItems: res.data.data.menu,
@@ -69,19 +48,15 @@ export const AnalyticList: React.FC = () => {
         .catch((err) => console.log(err));
     };
 
-    console.log("shoppingList");
-
     getMenuList();
   }, [setVal]);
 
   const dt = new Date();
   const dtVal: String = dt.toDateString();
-  console.log(dtVal);
 
   const handleListUpload = async (e: SyntheticEvent) => {
     const dt = e.target as HTMLInputElement;
 
-    console.log(dt.value);
     await axios
       .post("/api/addList", {
         title: title,
@@ -174,14 +149,6 @@ export const AnalyticList: React.FC = () => {
         }}
       ></div>
       <ListName style={{ display: listChange ? "block" : "none" }}>
-        <p
-          style={{ cursor: "pointer", margin: "0" }}
-          onClick={() => {
-            setListChange(false);
-          }}
-        >
-          X
-        </p>
         <label style={{ display: "block", marginBottom: "0.5rem" }}>
           Change List Name
         </label>
@@ -193,7 +160,6 @@ export const AnalyticList: React.FC = () => {
             height: "2rem",
           }}
           onChange={(e) => {
-            console.log(e.target.value);
             setListName(e.target.value);
           }}
         />
@@ -297,9 +263,9 @@ export const AnalyticList: React.FC = () => {
                   }}
                 >
                   {val.allItems.map((item: typeof val.allItems) => {
-                    const itemId: string = item._id;
+                    const itemId: string = item["_id"];
                     const count: number = itemArray[itemId];
-                    const itemCategory: string = item.category;
+                    const itemCategory: string = item["category"];
                     const ctgryCategory: string = ctgry;
                     return itemCategory === ctgryCategory &&
                       count !== undefined ? (

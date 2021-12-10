@@ -39,6 +39,8 @@ export const HeaderIconImage = styled.div`
 export const ToggleIcon = styled.div`
   position: relative;
   bottom: -2rem;
+  justify-content: center;
+  display: grid;
 `;
 
 export const ToggleContainer = styled.button<{ themeName: string }>`
@@ -89,4 +91,16 @@ export const CartWrapper = styled.div`
   justify-self: center;
   align-items: center;
   display: inline-flex;
+`;
+
+export const Notification = styled.div`
+  position: relative;
+  top: 10px;
+  left: 20px;
+  background: #eb5757;
+  width: 2rem;
+  border-radius: 0.2rem;
+  color: white;
+  font-family: "Quicksand";
+  font-weight: 600;
 `;

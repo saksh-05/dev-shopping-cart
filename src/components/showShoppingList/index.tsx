@@ -1,32 +1,21 @@
-import React, { SyntheticEvent, useState, useEffect } from "react";
-import { ListForm } from "@components";
+import React, { useState, useEffect } from "react";
 import {
   WrapperA,
-  Search,
-  InputWrapper,
-  Wrapper,
-  Txt,
-  Btn,
   Back,
   ShowItem,
   ButtonGrp,
 } from "./styled";
 import Image from "next/image";
 import { useSelector } from "react-redux";
-
 import { RootState } from "@redux/reducers";
 import axios from "axios";
-import { AppProps } from "next/app";
 import { useAppDispatch } from "@redux/store";
 import { viewItem, itemIncrease } from "@redux/actions";
 
 export const ShowShoppingList = () => {
   const dispatch = useAppDispatch();
-  const shopVal = useSelector((state: RootState) => state.shoppinglist.shop);
   const increaseVal = useSelector((state: RootState) => state.itemCounter);
   const itemView = useSelector((state: RootState) => state.toggle.itemView);
-  console.log(itemView);
-  // const showId=itemView.showId;
 
   const [showItemDetail, setShowItemDetail] = useState({
     data: {

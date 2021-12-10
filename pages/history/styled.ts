@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 70%;
+  width: 71.2%;
   padding-left: 2rem;
 `;
 export const HistoryValue = styled.div``;
@@ -14,7 +14,7 @@ export const HistoryTitle = styled.div`
   height: 5rem;
   background: white;
   border-radius: 0.5rem;
-  box-shadow: 0px 4px 10px -5px black;
+  box-shadow: black 1px 1px 8px -5px;
   width: 47rem;
   display: inline-flex;
   align-items: center;

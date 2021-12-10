@@ -2,14 +2,13 @@ import dbConnect from "../../../lib/dbConnect";
 import Menu from "../../../models/Menu";
 import Category from "../../../models/Category";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { TypeOf } from "yup";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const {
-    query: { id, category },
+    query: { id },
     method,
   } = req;
 
@@ -48,14 +47,14 @@ export default async function handler(
         const deleteMenuItem = await Menu.findOne({ _id: id });
         const allMenuItem = await Menu.find({});
         let cnt = 0;
-        allMenuItem.map((itm) => {
+        allMenuItem.map((itm: typeof allMenuItem) => {
           if (itm.category === deleteMenuItem.category) {
             cnt = cnt + 1;
           }
         });
         if (cnt === 1) {
           const deleteCategory = await Category.deleteOne({
-            category: category,
+            category: deleteMenuItem.category,
           });
         }
         const deletedMenu = await Menu.deleteOne({ _id: id });

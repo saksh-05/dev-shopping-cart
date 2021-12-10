@@ -3,29 +3,12 @@ import { WrapperB, BtnGroup, Category } from "./styled";
 import * as Yup from "yup";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import axios from "axios";
-
-import { useSelector } from "react-redux";
-
 import { addItem } from "@redux/actions";
-import { RootState } from "@redux/reducers";
 import { useAppDispatch } from "@redux/store";
 
 export const ListForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const [ctgry, setCtgry] = useState([]);
-  const [categoryName, setCategoryName] = useState("");
-  console.log(categoryName);
-
-  const handleSubmit = () => {
-    console.log("submit");
-  };
-
-  const handleCategory = (e: SyntheticEvent) => {
-    const val = e.target as HTMLInputElement;
-    console.log(val.value);
-    // setCategory(val.value);
-  };
-
   const ShoppingSchema = Yup.object().shape({
     name: Yup.string().max(30, "Too Long").required("Required"),
     category: Yup.string()
@@ -38,12 +21,10 @@ export const ListForm: React.FC = () => {
       await axios
         .get("/api/menuList")
         .then((res) => {
-          console.log(res.data.data.category);
           setCtgry(res.data.data.category);
         })
         .catch((err) => console.log(err));
     };
-    console.log(ctgry);
 
     getMenuList();
   }, [setCtgry]);
@@ -59,7 +40,6 @@ export const ListForm: React.FC = () => {
         }}
         validationSchema={ShoppingSchema}
         onSubmit={async (values, action) => {
-          console.log(values);
           await axios
             .put("/api/menuList", {
               values,
@@ -70,7 +50,7 @@ export const ListForm: React.FC = () => {
           action.setSubmitting(false);
         }}
       >
-        {({ isSubmitting, values,setFieldValue }) => (
+        {({ isSubmitting, values, setFieldValue }) => (
           <Form>
             <h4>Name</h4>
             <Field
@@ -85,15 +65,7 @@ export const ListForm: React.FC = () => {
                 fontSize: "1rem",
               }}
             />
-            <ErrorMessage
-              name="name"
-              component="div"
-              // style={{
-              //   color: "red",
-              //   fontSize: "0.8rem",
-              //   fontWeight: "600",
-              // }}
-            />
+            <ErrorMessage name="name" component="div" />
 
             <h4>Note(optional)</h4>
             <Field
@@ -129,11 +101,6 @@ export const ListForm: React.FC = () => {
             <Field
               name="category"
               as="textarea"
-              // onChangeText={(e: SyntheticEvent) => {
-              //   const val = e.target as HTMLInputElement;
-              //   setCategoryName(val.value);
-              // }}
-              // value={categoryName}
               placeholder="Enter a category"
               style={{
                 height: "4rem",
@@ -144,18 +111,6 @@ export const ListForm: React.FC = () => {
                 overflow: "hidden",
               }}
             />
-            {console.log(values.category)}
-            {/* {ctgry.map((ctg) => {
-                return (
-                  <option
-                    value={ctg["category"]}
-                    onClick={() => setCategoryName(ctg["category"])}
-                  >
-                    {ctg["category"]}
-                  </option>
-                );
-              })}
-            </Field> */}
 
             <Category className="category">
               {ctgry
@@ -169,39 +124,13 @@ export const ListForm: React.FC = () => {
                 })
                 .map((ctg) => {
                   return (
-                    <li onClick={() => setFieldValue('category',ctg["category"])}>
+                    <li
+                      onClick={() => setFieldValue("category", ctg["category"])}
+                    >
                       {ctg["category"]}
                     </li>
                   );
                 })}
-              {/* <li
-                onClick={() => {
-                  setCategoryName("all");
-                }}
-              >
-                all
-              </li>
-              <li
-                onClick={() => {
-                  setCategoryName("category");
-                }}
-              >
-                category
-              </li>
-              <li
-                onClick={() => {
-                  setCategoryName("like");
-                }}
-              >
-                like
-              </li>
-              <li
-                onClick={() => {
-                  setCategoryName("beverage");
-                }}
-              >
-                beverage
-              </li> */}
             </Category>
             <ErrorMessage name="category" component="div" />
 
