@@ -2,10 +2,15 @@ import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
+
 async function dbConnect() {
-  const db = await mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  await mongoose
+    .connect(`${process.env.MONGODB_URI}`)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
 }
 export default dbConnect;
