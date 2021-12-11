@@ -1,22 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  Wrapper,
-  Container,
-  TopItem,
-  TopCategory,
-  Progress,
-  FakeProgress,
-  Heading,
-  Chart,
-  WrapperA,
-} from "./styled";
 import { Header, ShowShoppingList, AnalyticList } from "@components";
 import GlobalStyle from "@styles/globalStyles";
 import { useSelector } from "react-redux";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
 import { RootState } from "@redux/reducers";
-import { useAppDispatch } from "@redux/store";
+import styled from "styled-components";
 
 const Analytics: React.FC = () => {
   const itemView = useSelector((state: RootState) => state.toggle.itemView);
@@ -154,3 +143,49 @@ const Analytics: React.FC = () => {
 };
 
 export default Analytics;
+
+const Wrapper = styled.div`
+  display: inline-flex;
+  width: 100%;
+`;
+
+const WrapperA = styled.div``;
+const Container = styled.div`
+  padding-left: 2rem;
+  display: inline-flex;
+  margin-bottom: 4rem;
+`;
+const Search = styled.div``;
+
+const TopItem = styled.div`
+  width: 25rem;
+`;
+const TopCategory = styled.div`
+  width: 24rem;
+`;
+
+const Heading = styled.div`
+  display: inline-flex;
+  justify-content: space-between;
+  font-size: 14px;
+  width: 72%;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+`;
+
+const FakeProgress = styled.div`
+  background: #e0e0e0;
+  height: 0.5rem;
+  position: absolute;
+  z-index: -1;
+  width: 22%;
+  border-radius: 0.5rem;
+`;
+
+const Progress = styled.div`
+  height: 0.5rem;
+  background: #56ccf2;
+  border-radius: 0.5rem;
+`;
+
+const Chart = styled.div``;

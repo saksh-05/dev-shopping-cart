@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-  Wrapper,
-  Container,
-  HistoryValue,
-  HistoryTitle,
-  Progress,
-  DetailHistory,
-} from "./styled";
 import { Header, ShowShoppingList, Shoppinglist } from "@components";
 import GlobalStyle from "@styles/globalStyles";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/reducers";
 import axios from "axios";
+import styled from "styled-components";
 
 const History: React.FC = () => {
   const itemView = useSelector((state: RootState) => state.toggle.itemView);
@@ -241,3 +234,36 @@ const History: React.FC = () => {
 };
 
 export default History;
+
+const Wrapper = styled.div`
+  display: inline-flex;
+  width: 100%;
+`;
+
+const Container = styled.div`
+  width: 71.2%;
+  padding-left: 2rem;
+`;
+const HistoryValue = styled.div``;
+const HistoryTitle = styled.div`
+  height: 5rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: black 1px 1px 8px -5px;
+  width: 47rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  justify-content: space-between;
+  cursor: pointer;
+`;
+const Progress = styled.div`
+  margin-left: 2rem;
+  margin-right: 2rem;
+`;
+
+const DetailHistory = styled.div`
+  margin-top: 3rem;
+`;
