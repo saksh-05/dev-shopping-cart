@@ -17,6 +17,16 @@ import { useSelector } from "react-redux";
 import { addItem, changeTitle } from "@redux/actions";
 import { RootState } from "@redux/reducers";
 import { useAppDispatch } from "@redux/store";
+import { ObjectId } from "mongodb";
+
+interface itemType {
+  _id: string;
+  __v: number;
+  category: string;
+  name: string;
+  note: string;
+  image: string;
+}
 
 export const AnalyticList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -215,7 +225,7 @@ export const AnalyticList: React.FC = () => {
           style={{ position: "relative", top: "-17px", height: "125px" }}
         />
         <Txt>
-          <p style={{ fontWeight: 700 }}>Didn’t find what you need?</p>
+          <p style={{ fontWeight: 700 }}>Didn`t find what you need?</p>
           <Btn onClick={() => dispatch(addItem())}>Add Item</Btn>
         </Txt>
       </Wrapper>
@@ -262,8 +272,8 @@ export const AnalyticList: React.FC = () => {
                     width: "100%",
                   }}
                 >
-                  {val.allItems.map((item: typeof val.allItems) => {
-                    const itemId: string = item["_id"];
+                  {val.allItems.map((item: itemType) => {
+                    const itemId = item["_id"];
                     const count: number = itemArray[itemId];
                     const itemCategory: string = item["category"];
                     const ctgryCategory: string = ctgry;
@@ -283,7 +293,7 @@ export const AnalyticList: React.FC = () => {
                             alignItems: "center",
                           }}
                         >
-                          {item.name}
+                          {item["name"]}
                         </h3>
                         <Counter>{count} pcs</Counter>
                       </ItemVal>

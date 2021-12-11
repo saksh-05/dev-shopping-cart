@@ -156,3 +156,19 @@ export const Item = styled.div`
     background: #f9a109;
   }
 `;
+
+export const Message = styled.div`
+  position: fixed;
+  bottom: 2rem;
+  left: 1rem;
+  background: #f93030;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  width: 26%;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: white;
+  font-weight: 500;
+  justify-content: space-between;
+`;

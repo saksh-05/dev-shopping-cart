@@ -18,8 +18,14 @@ const History: React.FC = () => {
   const itemView = useSelector((state: RootState) => state.toggle.itemView);
   const [resValue, setResValue] = useState([]);
   const [showDetailHistory, setShowDetailHistory] = useState(true);
-  const [detailHistory, setDetailHistory] = useState([]);
+  const [detailHistory, setDetailHistory] = useState({
+    title: String,
+    timestamps: String,
+    itemId: [],
+    categoryId: [],
+  });
   const [allItem, setAllItem] = useState([]);
+  console.log(detailHistory);
 
   useEffect(() => {
     const getHistoryList = async () => {

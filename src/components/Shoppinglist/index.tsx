@@ -16,6 +16,7 @@ import {
   ListName,
   DisplayList,
   Item,
+  Message,
 } from "./styled";
 import Image from "next/image";
 import axios from "axios";
@@ -30,6 +31,15 @@ import {
 import { RootState } from "@redux/reducers";
 import { useAppDispatch } from "@redux/store";
 
+interface itemType {
+  _id: string;
+  __v: number;
+  category: string;
+  name: string;
+  note: string;
+  image: string;
+}
+
 export const Shoppinglist: React.FC = () => {
   const dispatch = useAppDispatch();
   const [val, setVal] = useState({
@@ -37,7 +47,14 @@ export const Shoppinglist: React.FC = () => {
     allItems: [],
   });
   const [itemName, setItemName] = useState("");
-  const [itemDetail, setItemDetail] = useState(new Array());
+  const [itemDetail, setItemDetail] = useState<itemType>({
+    _id: "",
+    __v: 0,
+    category: "",
+    name: "",
+    note: "",
+    image: "",
+  });
   const [dropDown, setDropDown] = useState(false);
   const increaseVal = useSelector((state: RootState) => state.itemCounter);
   const itemArray = useSelector(
@@ -49,6 +66,7 @@ export const Shoppinglist: React.FC = () => {
   const show = useSelector((state: RootState) => state.shoppinglist.show);
   const categoryKeys = Object.keys(itmCtgry);
   const [listChange, setListChange] = useState(false);
+  const [message, setMessage] = useState(false);
   const [listName, setListName] = useState("");
 
   const title = useSelector((state: RootState) => state.shoppinglist.title);
@@ -155,7 +173,7 @@ export const Shoppinglist: React.FC = () => {
               style={{ position: "relative", top: "-17px", height: "125px" }}
             />
             <Txt>
-              <p style={{ fontWeight: 700 }}>Didn’t find what you need?</p>
+              <p style={{ fontWeight: 700 }}>Didn`t find what you need?</p>
               <Btn onClick={() => dispatch(addItem())}>Add Item</Btn>
             </Txt>
           </Wrapper>
@@ -221,7 +239,7 @@ export const Shoppinglist: React.FC = () => {
                         width: "100%",
                       }}
                     >
-                      {val.allItems.map((item: typeof val.allItems) => {
+                      {val.allItems.map((item: itemType) => {
                         const itemId: string = item["_id"];
                         const count: number = itemArray[itemId];
                         const itemCategory: string = item["category"];
@@ -311,13 +329,39 @@ export const Shoppinglist: React.FC = () => {
               </>
             )}
           </ShoppingListItem>
+          {message && (
+            <Message>
+              No item found, Add Item
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={() => setMessage(false)}
+              >
+                X
+              </div>
+            </Message>
+          )}
           {dropDown && (
             <DisplayList>
               {itemName === "" ? (
-                setDropDown(false)
+                <div>
+                  {val.allItems.map((itm: itemType) => {
+                    const name: string = itm["name"];
+                    return (
+                      <Item
+                        key={itm["_id"]}
+                        onClick={() => {
+                          setItemName(name);
+                          setItemDetail(itm);
+                        }}
+                      >
+                        {name}
+                      </Item>
+                    );
+                  })}
+                </div>
               ) : (
                 <div>
-                  {val.allItems.map((itm) => {
+                  {val.allItems.map((itm: itemType) => {
                     const name: string = itm["name"];
                     return name
                       .toLowerCase()
@@ -357,7 +401,7 @@ export const Shoppinglist: React.FC = () => {
                   const val = e.target as HTMLInputElement;
                   setItemName(val.value);
                 }}
-                onInput={() => setDropDown(true)}
+                onFocus={() => setDropDown(true)}
               />
               <input
                 type="submit"
@@ -376,14 +420,29 @@ export const Shoppinglist: React.FC = () => {
                 onClick={() => {
                   setItemName("");
                   setDropDown(false);
-                  dispatch(
-                    itemIncrease({
-                      item: itemDetail,
-                      count: 0 | increaseVal.itemArray[itemDetail["_id"]],
-                      ctgCount:
-                        0 | increaseVal.itemCategory[itemDetail["category"]],
-                    })
-                  );
+                  {
+                    val.allItems.map((itm) => {
+                      const name: string = itm["name"];
+                      return itm["_id"] === itemDetail["_id"] ||
+                        name.toLowerCase() === itemName.toLowerCase()
+                        ? dispatch(
+                            itemIncrease({
+                              item: itemDetail,
+                              count:
+                                0 | increaseVal.itemArray[itemDetail["_id"]],
+                              ctgCount:
+                                0 |
+                                increaseVal.itemCategory[
+                                  itemDetail["category"]
+                                ],
+                            })
+                          )
+                        : (setMessage(true),
+                          setTimeout(() => {
+                            setMessage(false);
+                          }, 3000));
+                    });
+                  }
                 }}
               />
             </InputWrapper>
