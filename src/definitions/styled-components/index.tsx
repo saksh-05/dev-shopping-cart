@@ -10,7 +10,7 @@ import { light } from "./light";
 
 export const ThemeContext = React.createContext({
   theme: "light",
-  toggle: () => undefined,
+  toggle: () => {},
 });
 
 export const useTheme = () => {
