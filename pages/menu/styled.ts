@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+const Container = styled.div`
   width: 70%;
   padding-left: 2rem;
   padding-bottom: 2rem;
 `;
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   width: 100%;
   display: inline-flex;
 `;
-export const Search = styled.div``;
+const Search = styled.div``;
 
-export const InputWrapper = styled.label`
+const InputWrapper = styled.label`
   position: relative;
   display: inline-flex;
   align-item: center;
@@ -36,15 +36,17 @@ export const InputWrapper = styled.label`
   }
 `;
 
-export const Txt = styled.p`
+const Txt = styled.p`
   color: #f9a109;
   margin-right: 0.5rem;
   font-size: 1.5rem;
   font-weight: 700;
 `;
 
-export const AllItems = styled.div`
+const AllItems = styled.div`
   height: 10rem;
 `;
 
-export const DisplayItem = styled.div``;
+const DisplayItem = styled.div``;
+
+export { Container, Wrapper, Search, InputWrapper, Txt, AllItems };

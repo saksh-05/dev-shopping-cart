@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const WrapperB = styled.div`
+const WrapperB = styled.div`
   width: 30%;
   background: white;
   text-align: left;
@@ -36,7 +36,7 @@ export const WrapperB = styled.div`
   }
 `;
 
-export const Category = styled.ul`
+const Category = styled.ul`
   display: none;
   box-shadow: 1px 1px 4px -1px black;
   border-radius: 0.5rem;
@@ -55,9 +55,11 @@ export const Category = styled.ul`
   }
 `;
 
-export const BtnGroup = styled.div`
+const BtnGroup = styled.div`
   margin-top: 2rem;
   display: inline-flex;
   justify-content: space-around;
   width: 100%;
 `;
+
+export { WrapperB, Category, BtnGroup };

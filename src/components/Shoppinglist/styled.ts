@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const WrapperA = styled.div`
+const WrapperA = styled.div`
   width: 30%;
   background: #fff0de;
   padding: 2rem;
   padding-bottom: 8rem;
 `;
 
-export const Search = styled.div`
+const Search = styled.div`
   background: white;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@ export const Search = styled.div`
   right: 0;
 `;
 
-export const InputWrapper = styled.div`
+const InputWrapper = styled.div`
   width: 83%;
   input:focus {
     outline: none !important;
@@ -27,21 +27,21 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   background: #80485b;
   display: inline-flex;
   border-radius: 1.5rem;
   width: 100%;
 `;
 
-export const Txt = styled.div`
+const Txt = styled.div`
   color: white;
   width: 10rem;
   margin-bottom: 1rem;
   cursor: pointer;
 `;
 
-export const Btn = styled.div`
+const Btn = styled.div`
   background: white;
   color: #34333a;
   width: 7rem;
@@ -53,11 +53,11 @@ export const Btn = styled.div`
   justify-content: center;
 `;
 
-export const ShoppingListItem = styled.ul`
+const ShoppingListItem = styled.ul`
   padding: 0;
 `;
 
-export const ItemVal = styled.div`
+const ItemVal = styled.div`
   display: inline-flex;
   align-items: center;
   background: white;
@@ -67,7 +67,7 @@ export const ItemVal = styled.div`
   justify-content: space-between;
 `;
 
-export const DeleteIcon = styled.div`
+const DeleteIcon = styled.div`
   background: #f9a109;
   border-radius: 1rem;
   height: 3.5rem;
@@ -77,7 +77,7 @@ export const DeleteIcon = styled.div`
   cursor: pointer;
 `;
 
-export const Counter = styled.div`
+const Counter = styled.div`
   border: 2px solid #f9a109;
   color: #f9a109;
   border-radius: 1.5rem;
@@ -88,7 +88,7 @@ export const Counter = styled.div`
   justify-content: center;
   font-size: 14px;
 `;
-export const Minus = styled.div`
+const Minus = styled.div`
   width: 2rem;
   font-size: 3rem;
   font-weight: 500;
@@ -97,7 +97,7 @@ export const Minus = styled.div`
   justify-content: center;
   cursor: pointer;
 `;
-export const Plus = styled.div`
+const Plus = styled.div`
   width: 2rem;
   font-size: 2rem;
   font-weight: 500;
@@ -107,23 +107,7 @@ export const Plus = styled.div`
   cursor: pointer;
 `;
 
-// export const ItemCounter = styled.div`
-//   border: 2px solid #f9a109;
-//   color: #f9a109;
-//   border-radius: 1.5rem;
-//   width: 5rem;
-//   height: 2.5rem;
-//   align-items: center;
-//   display: flex;
-//   justify-content: center;
-//   font-size: 14px;
-//   &:hover ${ItemVal} {
-//     display: inline-flex;
-//   }
-//   cursor: pointer;
-// `;
-
-export const ListName = styled.div`
+const ListName = styled.div`
   z-index: 1;
   background: white;
   position: absolute;
@@ -133,7 +117,7 @@ export const ListName = styled.div`
   padding: 2rem;
 `;
 
-export const DisplayList = styled.div`
+const DisplayList = styled.div`
   background: white;
   position: fixed;
   top: 0;
@@ -144,7 +128,7 @@ export const DisplayList = styled.div`
   overflow-y: auto;
 `;
 
-export const Item = styled.div`
+const Item = styled.div`
   cursor: pointer;
   height: 2rem;
   align-items: center;
@@ -157,7 +141,7 @@ export const Item = styled.div`
   }
 `;
 
-export const Message = styled.div`
+const Message = styled.div`
   position: fixed;
   bottom: 2rem;
   left: 1rem;
@@ -172,3 +156,22 @@ export const Message = styled.div`
   font-weight: 500;
   justify-content: space-between;
 `;
+
+export {
+  WrapperA,
+  Search,
+  InputWrapper,
+  Wrapper,
+  Txt,
+  Btn,
+  ShoppingListItem,
+  ItemVal,
+  DeleteIcon,
+  Counter,
+  Minus,
+  Plus,
+  ListName,
+  DisplayList,
+  Item,
+  Message,
+};

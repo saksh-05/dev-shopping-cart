@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const WrapperA = styled.div`
+const WrapperA = styled.div`
   width: 30%;
   background: #fff;
   padding: 2rem;
   box-shadow: 1px 1px 8px -3px black;
 `;
 
-export const Search = styled.div`
+const Search = styled.div`
   background: white;
   display: flex;
   align-items: center;
@@ -20,26 +20,26 @@ export const Search = styled.div`
   top: auto;
 `;
 
-export const InputWrapper = styled.div`
+const InputWrapper = styled.div`
   left: 1rem;
   position: relative;
 `;
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   background: #80485b;
   display: inline-flex;
   border-radius: 1.5rem;
   width: 100%;
 `;
 
-export const Txt = styled.div`
+const Txt = styled.div`
   color: white;
   width: 10rem;
   margin-bottom: 1rem;
   cursor: pointer;
 `;
 
-export const Btn = styled.div`
+const Btn = styled.div`
   background: white;
   color: #34333a;
   width: 7rem;
@@ -51,7 +51,7 @@ export const Btn = styled.div`
   justify-content: center;
 `;
 
-export const Back = styled.div`
+const Back = styled.div`
   cursor: pointer;
   color: #f9a109;
   display: inline-flex;
@@ -61,11 +61,23 @@ export const Back = styled.div`
   }
 `;
 
-export const ShowItem = styled.div``;
+const ShowItem = styled.div``;
 
-export const ButtonGrp = styled.div`
+const ButtonGrp = styled.div`
   margin-top: 3rem;
   display: inline-flex;
   justify-content: space-around;
   width: 100%;
 `;
+
+export {
+  WrapperA,
+  Search,
+  InputWrapper,
+  Wrapper,
+  Txt,
+  Btn,
+  Back,
+  ShowItem,
+  ButtonGrp,
+};

@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   display: inline-flex;
   width: 100%;
 `;
 
-export const Container = styled.div`
+const Container = styled.div`
   width: 71.2%;
   padding-left: 2rem;
 `;
-export const HistoryValue = styled.div``;
-export const HistoryTitle = styled.div`
+const HistoryValue = styled.div``;
+const HistoryTitle = styled.div`
   height: 5rem;
   background: white;
   border-radius: 0.5rem;
@@ -24,11 +24,20 @@ export const HistoryTitle = styled.div`
   justify-content: space-between;
   cursor: pointer;
 `;
-export const Progress = styled.div`
+const Progress = styled.div`
   margin-left: 2rem;
   margin-right: 2rem;
 `;
 
-export const DetailHistory = styled.div`
+const DetailHistory = styled.div`
   margin-top: 3rem;
 `;
+
+export {
+  Wrapper,
+  Container,
+  HistoryValue,
+  HistoryTitle,
+  Progress,
+  DetailHistory,
+};

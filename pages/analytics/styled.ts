@@ -1,26 +1,26 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   display: inline-flex;
   width: 100%;
 `;
 
-export const WrapperA = styled.div``;
-export const Container = styled.div`
+const WrapperA = styled.div``;
+const Container = styled.div`
   padding-left: 2rem;
   display: inline-flex;
   margin-bottom: 4rem;
 `;
-export const Search = styled.div``;
+const Search = styled.div``;
 
-export const TopItem = styled.div`
+const TopItem = styled.div`
   width: 25rem;
 `;
-export const TopCategory = styled.div`
+const TopCategory = styled.div`
   width: 24rem;
 `;
 
-export const Heading = styled.div`
+const Heading = styled.div`
   display: inline-flex;
   justify-content: space-between;
   font-size: 14px;
@@ -29,7 +29,7 @@ export const Heading = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-export const FakeProgress = styled.div`
+const FakeProgress = styled.div`
   background: #e0e0e0;
   height: 0.5rem;
   position: absolute;
@@ -38,10 +38,23 @@ export const FakeProgress = styled.div`
   border-radius: 0.5rem;
 `;
 
-export const Progress = styled.div`
+const Progress = styled.div`
   height: 0.5rem;
   background: #56ccf2;
   border-radius: 0.5rem;
 `;
 
-export const Chart = styled.div``;
+const Chart = styled.div``;
+
+export {
+  Wrapper,
+  WrapperA,
+  Container,
+  Search,
+  Chart,
+  Progress,
+  FakeProgress,
+  Heading,
+  TopCategory,
+  TopItem,
+};

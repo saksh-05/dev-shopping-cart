@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const WrapperA = styled.div`
+const WrapperA = styled.div`
   width: 30%;
   background: #fff0de;
   padding: 2rem;
   padding-bottom: 8rem;
 `;
 
-export const Search = styled.div`
+const Search = styled.div`
   background: white;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@ export const Search = styled.div`
   right: 0;
 `;
 
-export const InputWrapper = styled.div`
+const InputWrapper = styled.div`
   left: 1rem;
   position: relative;
   input:focus {
@@ -28,21 +28,21 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   background: #80485b;
   display: inline-flex;
   border-radius: 1.5rem;
   width: 100%;
 `;
 
-export const Txt = styled.div`
+const Txt = styled.div`
   color: white;
   width: 10rem;
   margin-bottom: 1rem;
   cursor: pointer;
 `;
 
-export const Btn = styled.div`
+const Btn = styled.div`
   background: white;
   color: #34333a;
   width: 7rem;
@@ -54,11 +54,11 @@ export const Btn = styled.div`
   justify-content: center;
 `;
 
-export const ShoppingListItem = styled.ul`
+const ShoppingListItem = styled.ul`
   padding: 0;
 `;
 
-export const ItemVal = styled.label`
+const ItemVal = styled.label`
   justify-content: space-between;
   display: inline-flex;
   width: 100%;
@@ -115,9 +115,9 @@ export const ItemVal = styled.label`
   }
 `;
 
-export const Span = styled.span``;
+const Span = styled.span``;
 
-export const Counter = styled.div`
+const Counter = styled.div`
   border: 2px solid #f9a109;
   color: #f9a109;
   border-radius: 1.5rem;
@@ -129,7 +129,7 @@ export const Counter = styled.div`
   font-size: 14px;
 `;
 
-export const ListDetail = styled.div`
+const ListDetail = styled.div`
   background: white;
   display: flex;
   align-items: center;
@@ -141,7 +141,7 @@ export const ListDetail = styled.div`
   right: 0;
 `;
 
-export const Dialog = styled.div`
+const Dialog = styled.div`
   position: relative;
   height: 15rem;
   width: 30rem;
@@ -157,7 +157,7 @@ export const Dialog = styled.div`
   padding-left: 2rem;
 `;
 
-export const ListName = styled.div`
+const ListName = styled.div`
   z-index: 1;
   background: white;
   position: absolute;
@@ -166,3 +166,19 @@ export const ListName = styled.div`
   width: 18.2rem;
   padding: 2rem;
 `;
+
+export {
+  WrapperA,
+  Search,
+  InputWrapper,
+  Wrapper,
+  Txt,
+  Btn,
+  ShoppingListItem,
+  ItemVal,
+  Span,
+  Counter,
+  ListDetail,
+  Dialog,
+  ListName,
+};
