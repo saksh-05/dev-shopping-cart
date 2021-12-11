@@ -46,7 +46,7 @@ const Progress = styled.div`
 
 const Chart = styled.div``;
 
-export {
+export default {
   Wrapper,
   WrapperA,
   Container,
