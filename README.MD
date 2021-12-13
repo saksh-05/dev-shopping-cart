@@ -1,5 +1,18 @@
 # dev_shopping_cart
+# Feature
+I have made a shopping list-making web app. 
+- Using this app users can make a list of items from the provided menu. 
+- Users can add items and categories to the menu. 
+- Users can see their shopping history and analytics when they have made shopping and analytics about their current shopping list. 
+- Users can cancel the list.
 
+# Tech stack: 
+- NextJs
+- Redux
+- Typescript
+- MongoDB( for database)
+-Styled-component (for Styling)
+- Vercel ( for deployment)
 
 This project was generated with [superplate](https://github.com/pankod/superplate).
 
@@ -44,14 +57,6 @@ Utilising tagged template literals (a recent addition to JavaScript) and the pow
 Redux helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.
 
 [Go To Documentation](https://redux.js.org/introduction/getting-started)
-
-
-### **Enzyme**
-
-Enzyme is a JavaScript Testing utility for React that makes it easier to test your React Components&#39; output. You can also manipulate, traverse, and in some ways simulate runtime given the output.
-
-[Go To Documentation](https://enzymejs.github.io/enzyme/)
-
 
 
 ## License
