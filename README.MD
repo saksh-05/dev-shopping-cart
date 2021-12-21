@@ -1,10 +1,12 @@
 # dev_shopping_cart
+
 # Feature
 I have made a shopping list-making web app. 
 - Using this app users can make a list of items from the provided menu. 
 - Users can add items and categories to the menu. 
 - Users can see their shopping history and analytics when they have made shopping and analytics about their current shopping list. 
 - Users can cancel the list.
+### [Demo](https://dev-shopping-cart.vercel.app/menu)
 
 # Tech stack: 
 - NextJs
