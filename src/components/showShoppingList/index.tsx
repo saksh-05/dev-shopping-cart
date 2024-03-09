@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  WrapperA,
-  Back,
-  ShowItem,
-  ButtonGrp,
-} from "./styled";
+import { WrapperA, Back, ShowItem, ButtonGrp } from "./styled";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/reducers";
@@ -32,10 +27,10 @@ export const ShowShoppingList = () => {
     const getMenuList = async () => {
       await axios
         .get(`/api/menuList/${itemView.showId}`)
-        .then((res) => {
+        .then((res: any) => {
           setShowItemDetail(res.data);
         })
-        .catch((err) => console.log(err));
+        .catch((err: any) => console.log(err));
     };
     console.log("useEffect");
     getMenuList();
@@ -49,8 +44,8 @@ export const ShowShoppingList = () => {
           category: showItemDetail.data.category,
         },
       })
-      .then((res) => console.log(res))
-      .catch((err) => console.log("delete error", err));
+      .then((res: any) => console.log(res))
+      .catch((err: any) => console.log("delete error", err));
     dispatch(
       viewItem({
         itemId: "",

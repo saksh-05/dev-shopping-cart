@@ -3,8 +3,6 @@ import styled from "styled-components";
 const WrapperA = styled.div`
   width: 30%;
   background: #fff0de;
-  padding: 2rem;
-  padding-bottom: 8rem;
 `;
 
 const Search = styled.div`
@@ -13,10 +11,9 @@ const Search = styled.div`
   align-items: center;
   justify-content: center;
   position: fixed;
-  width: 22.2rem;
+  width: 30%;
   height: 8rem;
   bottom: 0;
-  right: 0;
 `;
 
 const InputWrapper = styled.div`
