@@ -1,23 +1,22 @@
 import styled from "styled-components";
 
 const WrapperA = styled.div`
+  height: 100vh;
+  position: fixed;
+  right: 0px;
   width: 30%;
   background: #fff0de;
 `;
 
 const Search = styled.div`
+  padding: 16px 0px;
   background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  width: 30%;
   height: 8rem;
-  bottom: 0;
 `;
 
 const InputWrapper = styled.div`
-  width: 83%;
+  display: flex;
+  justify-content: center;
   input:focus {
     outline: none !important;
     border: 2px solid #f9a109;
@@ -52,6 +51,11 @@ const Btn = styled.div`
 
 const ShoppingListItem = styled.ul`
   padding: 0;
+  flex: 1;
+  margin: 0px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding-right: 10px;
 `;
 
 const ItemVal = styled.div`
@@ -72,6 +76,7 @@ const DeleteIcon = styled.div`
   align-items: center;
   display: grid;
   cursor: pointer;
+  justify-content: center;
 `;
 
 const Counter = styled.div`
@@ -117,11 +122,11 @@ const ListName = styled.div`
 const DisplayList = styled.div`
   background: white;
   position: fixed;
-  top: 0;
+  top: 15px;
   bottom: 130px;
   box-shadow: 0px 0px 3px 0px black;
   width: 23%;
-  padding: 2rem 0;
+  padding: 1rem 0;
   overflow-y: auto;
 `;
 

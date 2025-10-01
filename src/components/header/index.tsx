@@ -85,7 +85,7 @@ export const Header: React.FC = () => {
             ""
           )}
           <CartWrapper>
-            <Image src="/icons/cart.svg" alt="cart" width="96" height="72" />
+            <Image src="/icons/cart.svg" alt="cart" width="48" height="30" />
           </CartWrapper>
         </ToggleIcon>
       </Container>

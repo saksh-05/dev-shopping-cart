@@ -93,11 +93,17 @@ export const Shoppinglist: React.FC = () => {
         <ListForm />
       ) : (
         <WrapperA>
-          <div style={{ padding: "2rem" }}>
+          <div
+            style={{
+              padding: "2rem 2rem 0 2rem",
+              height: "85%",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <div
               style={{
                 display: listChange ? "block" : "none",
-                width: "22rem",
                 height: "100%",
                 position: "fixed",
                 right: "0",
@@ -105,6 +111,7 @@ export const Shoppinglist: React.FC = () => {
                 zIndex: 1,
                 background: "black",
                 opacity: "30%",
+                width: "30%",
               }}
             ></div>
             <ListName style={{ display: listChange ? "block" : "none" }}>
@@ -181,8 +188,7 @@ export const Shoppinglist: React.FC = () => {
             {Object.keys(itemArray).length !== 0 ? (
               <div
                 style={{
-                  marginTop: "2rem",
-                  marginBottom: "2rem",
+                  margin: "1rem 0rem 0.5rem 0rem",
                   display: "flex",
                   alignItems: "center",
                   fontSize: "1.5rem",
@@ -224,7 +230,7 @@ export const Shoppinglist: React.FC = () => {
                       <h4
                         key={ctgry}
                         style={{
-                          marginBottom: "0.5rem",
+                          margin: "0.5rem 0rem",
                           fontWeight: 700,
                           fontFamily: "Quicksand",
                           color: "#828282",
@@ -254,6 +260,7 @@ export const Shoppinglist: React.FC = () => {
                                 justifyContent: "space-between",
                                 width: "100%",
                                 alignItems: "center",
+                                margin: "4px 0px",
                               }}
                             >
                               {item.name}
@@ -358,6 +365,7 @@ export const Shoppinglist: React.FC = () => {
                           onClick={() => {
                             setItemName(name);
                             setItemDetail(itm);
+                            setDropDown(false);
                           }}
                         >
                           {name}
@@ -377,6 +385,7 @@ export const Shoppinglist: React.FC = () => {
                           onClick={() => {
                             setItemName(name);
                             setItemDetail(itm);
+                            setDropDown(false);
                           }}
                         >
                           {name}
