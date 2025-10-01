@@ -1,6 +1,9 @@
 import React from "react";
 import { Container } from "./styled";
 
-export const Wrapper: React.FC = ({ children }) => {
+interface WrapperProps {
+  children: React.ReactNode;
+}
+export const Wrapper: React.FC<WrapperProps> = ({ children }) => {
   return <Container>{children}</Container>;
 };

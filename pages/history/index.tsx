@@ -12,8 +12,8 @@ const History: React.FC = () => {
   const [resValue, setResValue] = useState([]);
   const [showDetailHistory, setShowDetailHistory] = useState(true);
   const [detailHistory, setDetailHistory] = useState({
-    title: String,
-    timestamps: String,
+    title: "",
+    timestamps: "",
     itemId: [],
     categoryId: [],
   });
